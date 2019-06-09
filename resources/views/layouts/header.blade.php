@@ -6,12 +6,14 @@
     <title>Mijn applicatie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost/includes/custom.css">
-    <link rel="stylesheet" href="http://localhost/includes/footer.css">
+    <link rel="stylesheet" href="http://localhost:8000/custom.css">
+    <link rel="stylesheet" href="http://localhost:8000/footer.css">
+    <link rel="stylesheet" href="http://localhost:8000/movieStyle.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../includes/js/functions.js"></script>
+
 
 </head>
 <body>
@@ -19,7 +21,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">PHP Workshop</a>
+                <a class="navbar-brand" href="#">Movies</a>
             </div>
 
             <ul class="nav navbar-nav">
@@ -27,8 +29,25 @@
 
 
             </ul>
-            <ul class="nav navbar-right">
-                <li><button id="logOut" class="btn btn-lg btn-primary">Logout</button></li>
+            <ul class="nav navbar-right navbar-nav">
+                <li>
+                    @if (Route::has('login'))
+
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+
+                        @else
+                            <a style="color: white" href="{{ route('login') }}">Login</a>
+
+                            @if (Route::has('register'))
+
+                                <a style="color: white" href="{{ route('register') }}">Register</a>
+
+                            @endif
+                        @endauth
+
+                    @endif
+                </li>
             </ul>
 
         </div>
