@@ -1,34 +1,35 @@
 @include('layouts/header')
-<div class="grid-container">
-    <div class="movie1">1</div>
 
-    <div class="movie2">2</div>
+<div class="container">
 
-    <div class="movie3">3</div>
+    @if(session('message'))
+        <div class="alert alert-info" role="alert">
+            <h4>{{session('message')}}</h4>
+        </div>
+    @endif
+    <table class="table table-responsive">
+        <thead class="thead-dark">
+        <tr>
+            <th>Titel</th>
+            <th>Jaar</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
 
-    <div class="movie4">4</div>
+        @foreach($movies as $movie)
+            <tr>
+                <td>{{$movie->titel}}</td>
+                <td>{{$movie->jaar}}</td>
+                <td><a href="{{route("editMovie",['filmId' => $movie->film_id])}}">Edit</a>
+                    |
+                    <a href="{{route("deleteMovie",['filmId' => $movie->film_id])}}">Delete</a>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
 
-    <div class="movie5">5</div>
-
-    <div class="movie6">6</div>
-
-    <div class="movie7">7</div>
-
-    <div class="movie8">8</div>
-
-    <div class="movie9">9</div>
-
-    <div class="movie10">10</div>
-
-    <div class="movie11">11</div>
-
-    <div class="movie12">12</div>
-
-    <div class="movie13">13</div>
-
-    <div class="movie14">14</div>
-
-    <div class="movie15">15</div>
+    </table>
 </div>
 
 @include('layouts/footer')

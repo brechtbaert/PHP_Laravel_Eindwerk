@@ -11,10 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('MovieHome');
-});
+//get routes
+Route::get('/','MovieController@showMovies')->name('showMovies');
+Route::get('/editMovie/{movieId}','MovieController@editMovie')->name('editMovie');
+Route::get('/newMovie','MovieController@newMovie')->name('newMovie');
+Route::get('/deleteMovie/{movieId}','MovieController@deleteMovie')->name('deleteMovie');
 
+
+//authentication routes
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//post routes
+Route::post('/updateMovie','MovieController@updateMovie')->name('updateMovie');
+Route::post('/insertMovie','MovieController@addNewMovie')->name('addNewMovie');
+
