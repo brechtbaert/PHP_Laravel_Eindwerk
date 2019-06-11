@@ -49,12 +49,12 @@ class MovieController extends Controller
                 '=',
                 'tbl_films_regisseur.film_id')
             ->join('tbl_regisseurs','reg_id','=','regisseur_id')
-            ->where('tbl_films.film_id','=',$filmId)
+            ->where('tbl_films.film_id','=',$movieId)
             ->get();
 
         $directors = DB::table('tbl_regisseurs')->get();
 
-        $vars = ['movieId'=> $movieId,'movieData'=> $moviesWithDirector,'director'=>$directors];
+        $vars = ['movieId'=> $movieId,'movieData'=> $moviesWithDirector,'directors'=>$directors];
         return view('editMovie',$vars);
 
     }
