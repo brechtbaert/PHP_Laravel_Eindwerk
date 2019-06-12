@@ -41,8 +41,6 @@ class MovieController extends Controller
 
     public function editMovie($movieId)
     {
-        $ar_params = array('film_id'=>$movieId);
-
         $moviesWithDirector = DB::table('tbl_films')
             ->select('regisseur_id','titel','jaar','name','fname')
             ->join('tbl_films_regisseur','tbl_films.film_id',

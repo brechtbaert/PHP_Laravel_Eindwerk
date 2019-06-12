@@ -23,17 +23,28 @@ Route::get('/editDirector/{directorId}','DirectorController@editDirector')->name
 Route::get('/newDirector','DirectorController@newDirector')->name('newDirector');
 route::get('/deleteMovie','DirectorController@deleteDirector')->name('deleteMovie');
 
+//actor routes
+Route::get('/editActor/{actorId}','ActorController@editActor')->name('editActor');
+Route::get('/newActor','ActorController@newActor')->name('newActor');
+Route::get('/deleteActor','ActorController@deleteActor')->name('deleteActor');
+
+
 
 //authentication routes
 Auth::routes();
+
+
 
 //post routes
 //movie routes
 Route::post('/updateMovie','MovieController@updateMovie')->name('updateMovie');
 Route::post('/insertMovie','MovieController@addNewMovie')->name('addNewMovie');
 
-
 //director routes
 Route::post('/updateDirector','DirectorController@updateDirector')->name('updateDirector');
 Route::post('/insertDirector','DirectorController@addNewDirector')->name('addNewDirector');
+
+//Actor routes
+Route::post('/updateActor','ActorController@updateActor')->name('updateActor');
+Route::post('/insertActor','ActorController@addNewActor')->name('addNewActor');
 
