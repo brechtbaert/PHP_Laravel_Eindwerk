@@ -22,13 +22,13 @@ Route::get('/deleteMovie/{movieId}','MovieController@deleteMovie')->name('delete
 Route::get('/allDirectors','DirectorController@showDirectors')->name('showDirectors');
 Route::get('/editDirector/{directorId}','DirectorController@editDirector')->name('editDirector');
 Route::get('/newDirector','DirectorController@newDirector')->name('newDirector');
-route::get('/deleteDirector','DirectorController@deleteDirector')->name('deleteDirector');
+route::get('/deleteDirector/{directorId}','DirectorController@deleteDirector')->name('deleteDirector');
 
 //actor routes
 Route::get('allActors','ActorController@showActors')->name('showActors');
 Route::get('/editActor/{actorId}','ActorController@editActor')->name('editActor');
 Route::get('/newActor','ActorController@newActor')->name('newActor');
-Route::get('/deleteActor','ActorController@deleteActor')->name('deleteActor');
+Route::get('/deleteActor/{actorId}','ActorController@deleteActor')->name('deleteActor');
 
 
 

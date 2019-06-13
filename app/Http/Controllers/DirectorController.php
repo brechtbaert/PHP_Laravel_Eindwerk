@@ -74,10 +74,10 @@ class DirectorController extends Controller
     }
 
     //delete director
-    public  function deleteDirector($directorId)
+    public function deleteDirector($directorId)
     {
-        $ar_param = array('regisseur_id'=>$directorId);
-        $result=DB::delete('DELETE FROM tbl_regisseurs WHERE regisseur_id=:regisseur_id',$ar_param);
+        $ar_params = array('regisseur_id'=>$directorId);
+        $result=DB::delete('DELETE FROM tbl_regisseurs WHERE regisseur_id=:regisseur_id',$ar_params);
 
         if ($result)
         {
@@ -90,18 +90,42 @@ class DirectorController extends Controller
         return redirect(route('showDirectors'));
     }
 
+    //show newDirector view
+    public function newDirector()
+    {
+        return view('newDirector');
+
+    }
+
     //ad new director
-    public  function addNewDirector(Request $request)
+    public function addNewDirector(Request $request)
     {
         $ar_rules = array('fname'=>'required','name'=>'required');
         $request->validate($ar_rules);
 
         $fname  = $request->input('fname');
-        $name  = $request->input('name');
+        $name   = $request->input('name');
 
         $ar_param = array('fname'=>$fname,'name'=>$name);
 
-        $result=DB::insert('insert into tbl_regisseurs(fname,name) VALUES (:fname,:name)',$ar_param);
+        $result = DB::insert('insert into tbl_regisseurs(fname,name)VALUES(:fname,:name)',$ar_param);
 
+        try
+        {
+            $result;
+        }
+        catch (QueryException $exception)
+        {
+            //message for error
+            $message = "Er is en fout opgetreden tijdens het toevoegen van de regisseur";
+            $request->session()->flash('message',$message);
+
+            //redirect to moviepage
+            return redirect()->route('shoDirectors');
+        }
+
+        $message = "De regisseur werd succesvol toegevoegd";
+        $request->session()->flash('message',$message);
+        return redirect()->route('showDirectors');
     }
 }
