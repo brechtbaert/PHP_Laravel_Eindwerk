@@ -1,8 +1,18 @@
 Implementeer minimaal onderstaande functionaliteiten:
 - [x] Loginsysteem op basis van de Laravel scaffolding tool
-- [ ] De mogelijkheid om een film toe te voegen/wijzigen/verwijderen
+
+                    Films
+- [x] De mogelijkheid om een film toe te voegen
+- [ ] De mogelijkheid om een film te wijzigen
+- [x] De mogelijkheid om een film te verwijderen
 - [ ] Aan de film moet ook een regisseur kunnen worden toegevoegd
-- [ ] De mogelijkheid om een regisseur toe te voegen/wijzigen/verwijderen
+
+                    Regisseurs
+- [x] De mogelijkheid om een regisseur toe te voegen
+- [x] De mogelijkheid om een regisseur te wijzigen
+- [x] De mogelijkheid om een regisseur te verwijderen
+
+                    Acteurs
 - [ ] De mogelijkheid om een acteur toe te voegen/wijzigen/verwijderen
 - [ ] De mogelijkheid om een rating + review te geven aan een film
 
@@ -15,3 +25,9 @@ Extra punten te verdienen met:
 - [ ] Layout
 - [ ] De mogelijkheid om de film info(rating+review) te bekijken
 - [ ] De mogelijkheid om acteurs toe te voegen aan een film
+
+Errors
+- [ ] Films zonder regisseur_id kunnen niet worden gewijzigd want er word gezocht op regisseur_id en niet op film_id
+
+Small improvements
+- [ ] Melding weergeven wanneer film, regisseur of acteur is verwijderd
