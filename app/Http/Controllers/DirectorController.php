@@ -6,6 +6,7 @@ use http\Exception\BadQueryStringException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Result;
 
 class DirectorController extends Controller
 {
@@ -15,10 +16,10 @@ class DirectorController extends Controller
         $this->middleware('auth');
     }
 
-    public function showMovies()
+    public function showDirectors()
     {
-        $movies = DB::select('select * from tbl_films');
-        return view('MovieHome', ['movies'=>$movies]);
+        $directors = DB::select('select * from tbl_regisseurs');
+        return view('DirectorsHome', ['directors'=>$directors]);
 
     }
 
@@ -69,6 +70,38 @@ class DirectorController extends Controller
         $message = "Updates werden succesvol uitgevoerd";
         $request->session()->flash('message',$message);
         return redirect()->route('showMovies');
-        
+
+    }
+
+    //delete director
+    public  function deleteDirector($directorId)
+    {
+        $ar_param = array('regisseur_id'=>$directorId);
+        $result=DB::delete('DELETE FROM tbl_regisseurs WHERE regisseur_id=:regisseur_id',$ar_param);
+
+        if ($result)
+        {
+            $message = "Regisseur werd verwijderd";
+        }
+        else
+        {
+            $message = "Er is een fout opgetreden tijdens het verwijderen";
+        }
+        return redirect(route('showDirectors'));
+    }
+
+    //ad new director
+    public  function addNewDirector(Request $request)
+    {
+        $ar_rules = array('fname'=>'required','name'=>'required');
+        $request->validate($ar_rules);
+
+        $fname  = $request->input('fname');
+        $name  = $request->input('name');
+
+        $ar_param = array('fname'=>$fname,'name'=>$name);
+
+        $result=DB::insert('insert into tbl_regisseurs(fname,name) VALUES (:fname,:name)',$ar_param);
+
     }
 }

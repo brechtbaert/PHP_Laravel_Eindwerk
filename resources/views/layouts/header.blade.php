@@ -21,12 +21,15 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Movies</a>
+                <a class="navbar-brand" href="{{route("showMovies")}}">Movies</a>
             </div>
 
             <ul class="nav navbar-nav">
-                <li class="active"><a href="./index.php">Home</a></li>
+                <!--Link to directors-->
+                <li><a href="{{route("showDirectors")}}">Directors</a>
 
+                    <!--Link to actors-->
+                <li><a href="{{route("showActors")}}">Actors</a></li>
 
             </ul>
             <ul class="nav navbar-right navbar-nav">

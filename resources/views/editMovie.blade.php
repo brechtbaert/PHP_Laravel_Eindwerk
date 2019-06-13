@@ -33,7 +33,7 @@
 
         <!-- hiddem film_id -->
         <input type="hidden" name="film_id" value="{{$movieId}}">
-
+        <br>
         <!-- Save button -->
         <button class="btn btn-info btn-block" type="submit">Save</button>
 

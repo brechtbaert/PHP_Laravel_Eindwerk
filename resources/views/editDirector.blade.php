@@ -21,7 +21,7 @@
 
         <!--hidden directorId-->
         <input type="hidden" name="directorId" value="{{$directorId}}">
-
+        <br>
         <!--Save button-->
         <button class="btn btn-info btn-block" type="submit">Save</button>
 

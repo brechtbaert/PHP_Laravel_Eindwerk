@@ -31,6 +31,9 @@
         </tbody>
 
     </table>
+
+        <a href="{{route("newMovie")}}" class="btn btn-info">Voeg een film toe</a>
 </div>
+<br>
 
 @include('layouts/footer')
