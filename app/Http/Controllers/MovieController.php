@@ -71,6 +71,24 @@ class MovieController extends Controller
 
         $result = DB::insert('insert into tbl_films(titel,jaar) VALUES (:titel,:jaar)',$ar_param);
 
+        try
+        {
+            $result;
+        }
+        catch (QueryException $exception)
+        {
+            //message for error
+            $message = "Er is en fout opgetreden tijdens het toevoegen van de film";
+            $request->session()->flash('message',$message);
+
+            //redirect to moviepage
+            return redirect()->route('showMovies');
+        }
+
+        $message = "De film werd succesvol toegevoegd";
+        $request->session()->flash('message',$message);
+        return redirect()->route('showMovies');
+
     }
 
     //update movie
