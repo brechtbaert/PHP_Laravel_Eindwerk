@@ -12,13 +12,13 @@
     <form class="text-center border border-light p-5" action="{{route('addNewDirector')}}" method="post">
     {{csrf_field()}}
 
-    <!-- Titel -->
+        <!-- Voornaam -->
         <input type="text" id="directorFname" name="fname"  class="form-control mb-4" placeholder="Voornaam">
         <br>
-        <!-- Jaar -->
+        <!-- Naam -->
         <input type="text" id="directorName" name="name" class="form-control mb-4" placeholder="Achternaam">
         <br>
-        <!-- Sign in button -->
+        <!-- Save button -->
         <button class="btn btn-info btn-block" type="submit">Save</button>
         <br>
 

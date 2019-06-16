@@ -36,7 +36,7 @@ class DirectorController extends Controller
 
     }
 
-    //edit Director
+    //update Director
     public function updateDirector(Request $request)
     {
         $ar_rules = array('fname'=>'required','name'=>'required');
@@ -63,13 +63,13 @@ class DirectorController extends Controller
             $request->session()->flash('message',$message);
 
             //redirect to moviepage
-            return redirect()->route('showMovies');
+            return redirect()->route('showDirectors');
         }
 
         //updates completed
         $message = "Updates werden succesvol uitgevoerd";
         $request->session()->flash('message',$message);
-        return redirect()->route('showMovies');
+        return redirect()->route('showDirectors');
 
     }
 
@@ -97,7 +97,7 @@ class DirectorController extends Controller
 
     }
 
-    //ad new director
+    //add new director
     public function addNewDirector(Request $request)
     {
         $ar_rules = array('fname'=>'required','name'=>'required');
@@ -121,7 +121,7 @@ class DirectorController extends Controller
             $request->session()->flash('message',$message);
 
             //redirect to moviepage
-            return redirect()->route('shoDirectors');
+            return redirect()->route('showDirectors');
         }
 
         $message = "De regisseur werd succesvol toegevoegd";

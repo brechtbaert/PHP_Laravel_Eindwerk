@@ -33,14 +33,19 @@ class MovieController extends Controller
 
     public function newMovie()
     {
-        return view('newMovie');
 
+        return view('newMovie');
     }
+
+    //show addDirector to new movie view
+
+
 
     //edit movie
 
     public function editMovie($movieId)
     {
+
         $moviesWithDirector = DB::table('tbl_films')
             ->select('regisseur_id','titel','jaar','name','fname')
             ->join('tbl_films_regisseur','tbl_films.film_id',
@@ -85,9 +90,59 @@ class MovieController extends Controller
             return redirect()->route('showMovies');
         }
 
+        $movieData = DB::table('tbl_films')
+            ->select('film_id','titel','jaar')
+            ->where('titel','=',$title)
+            ->where('jaar','=',$year)
+            ->get();
+
+        $directors = DB::table('tbl_regisseurs')->get();
+
+        $vars = ['title'=>$title,'year'=>$year,'movieData'=>$movieData,'directors'=>$directors];
+
         $message = "De film werd succesvol toegevoegd";
         $request->session()->flash('message',$message);
+
+        return view('addDirectorToNewMovie',$vars);
+
+        //return redirect()->route('addDirector',$vars);
+
+    }
+
+    //add director to new movie
+
+    public function addDirectorToNewMovie(Request $request)
+    {
+        $ar_rules = array('regisseur'=>'required');
+        $request->validate($ar_rules);
+
+        $director = $request->input('regisseur');
+        $movieId = $request->input('film_id');
+
+        $ar_param = array('film_id'=>$movieId,'reg_id'=>$director);
+
+        $result = DB::insert('insert into tbl_films_regisseur(film_id,reg_id) VALUES (:film_id,:reg_id)',$ar_param);
+
+        try
+        {
+            $result;
+        }
+        catch (QueryException $exception)
+        {
+            //message for error
+            $message = "Er is en fout opgetreden tijdens het toevoegen van de regisseur";
+            $request->session()->flash('message',$message);
+
+            //redirect to moviepage
+            return redirect()->route('showMovies');
+        }
+
+        $message = "De regisseur werd succesvol toegevoegd";
+        $request->session()->flash('message',$message);
+
         return redirect()->route('showMovies');
+
+
 
     }
 
