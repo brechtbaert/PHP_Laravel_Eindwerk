@@ -20,11 +20,16 @@
 
         @foreach($movies as $movie)
             <tr>
-                <td>{{$movie->titel}}</td>
+                <td><a href="{{route("movieDetail",['film_id'=>$movie->film_id])}}">{{$movie->titel}}</a></td>
+
                 <td>{{$movie->jaar}}</td>
-                <td><a href="{{route("editMovie",['filmId' => $movie->film_id])}}">Edit</a>
+
+                <td>
+                    <a href="{{route("editMovie",['filmId' => $movie->film_id])}}">Edit</a>
                     |
                     <a href="{{route("deleteMovie",['filmId' => $movie->film_id])}}">Delete</a>
+
+
                 </td>
             </tr>
         @endforeach

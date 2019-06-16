@@ -29,6 +29,7 @@
                     <option value="{{$director->regisseur_id}}">{{$director->fname}} {{$director->name}}</option>
                 @endif
             @endforeach
+
         </select>
 
         <!-- hiddem film_id -->

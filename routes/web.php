@@ -14,9 +14,11 @@
 //get routes
 //movie routes
 Route::get('/','MovieController@showMovies')->name('showMovies');
+Route::get('/movieDetail/{movieId}','MovieController@movieDetail')->name('movieDetail');
 Route::get('/editMovie/{movieId}','MovieController@editMovie')->name('editMovie');
 Route::get('/newMovie','MovieController@newMovie')->name('newMovie');
 Route::get('/addDirector','MovieController@addDirector')->name('addDirector');
+Route::get('/addActor/{movieId}','MovieController@showAddActorToMovie')->name('showAddActorToMovie');
 Route::get('/deleteMovie/{movieId}','MovieController@deleteMovie')->name('deleteMovie');
 
 
@@ -32,11 +34,12 @@ Route::get('/editActor/{actorId}','ActorController@editActor')->name('editActor'
 Route::get('/newActor','ActorController@newActor')->name('newActor');
 Route::get('/deleteActor/{actorId}','ActorController@deleteActor')->name('deleteActor');
 
+//user routes
+Route::get('/addReview/{movieId}','UserController@addReview')->name('addReview');
 
 
 //authentication routes
 Auth::routes();
-
 
 
 //post routes
@@ -44,12 +47,15 @@ Auth::routes();
 Route::post('/updateMovie','MovieController@updateMovie')->name('updateMovie');
 Route::post('/insertMovie','MovieController@addNewMovie')->name('addNewMovie');
 Route::post('/addDirector','MovieController@addDirectorToNewMovie')->name('addDirectorToNewMovie');
+Route::post('/addActorMovie','MovieController@addActorMovie')->name('addActorMovie');
 
 //director routes
 Route::post('/updateDirector','DirectorController@updateDirector')->name('updateDirector');
 Route::post('/insertDirector','DirectorController@addNewDirector')->name('addNewDirector');
 
-//Actor routes
+//actor routes
 Route::post('/updateActor','ActorController@updateActor')->name('updateActor');
 Route::post('/insertActor','ActorController@addNewActor')->name('addNewActor');
 
+//user routes
+Route::post('/newReview','UserController@addNewReview')->name('newReview');

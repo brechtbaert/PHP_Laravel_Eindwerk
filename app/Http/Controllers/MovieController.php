@@ -29,6 +29,76 @@ class MovieController extends Controller
 
     }
 
+    public function movieDetail($movieId)
+    {
+        $moviesWithDirector = DB::table('tbl_films')
+            ->select('regisseur_id','titel','jaar','name','fname')
+            ->join('tbl_films_regisseur','tbl_films.film_id',
+                '=',
+                'tbl_films_regisseur.film_id')
+            ->join('tbl_regisseurs','reg_id','=','regisseur_id')
+            ->where('tbl_films.film_id','=',$movieId)
+            ->get();
+
+        $movieReviews = DB::table('tbl_review')
+            ->select('id','name','film_id','review','rating')
+            ->join('users','tbl_review.user_id','=','users.id')
+            ->where('tbl_review.film_id','=',$movieId)
+            ->get();
+
+        $vars = ['movieId'=>$movieId,'movieData'=>$moviesWithDirector,'movieReviews'=>$movieReviews];
+        return view('movieDetail',$vars);
+
+    }
+
+    public function showAddActorToMovie($movieId)
+    {
+        $movieData = DB::table('tbl_films')
+            ->select('film_id','titel','jaar')
+            ->where('film_id','=',$movieId)
+            ->get();
+
+
+        $actors = DB::table('tbl_acteurs')->get();
+
+        $vars = ['movieId'=>$movieId,'movieData'=>$movieData,'actors'=>$actors];
+        return view('addActorToMovie',$vars);
+
+    }
+
+    public function addActorMovie(Request $request)
+    {
+        $ar_rules = array('acteur'=>'required');
+        $request->validate($ar_rules);
+
+        $actor = $request->input('acteur');
+        $movieId = $request->input('film_id');
+
+
+        $ar_param = array('film_id'=>$movieId,'acteur_id'=>$actor);
+
+        $result = DB::insert('insert into tbl_film_acteur(film_id,acteur_id) VALUES (:film_id,:acteur_id)',$ar_param);
+
+        try
+        {
+            $result;
+
+        }
+        catch (QueryException $exception)
+        {
+            //message for error
+            $message = "Er is en fout opgetreden tijdens het toevoegen van de acteur/atrice";
+            $request->session()->flash('message',$message);
+
+            //redirect to movieDetailPage
+            return redirect()->route('movieDetail');
+        }
+
+        $message = "De acteur/actrice werd succesvol toegevoegd";
+        $request->session()->flash('message',$message);
+
+        return redirect()->route('movieDetail',$movieId);
+    }
     //show newMovie view
 
     public function newMovie()
@@ -36,10 +106,6 @@ class MovieController extends Controller
 
         return view('newMovie');
     }
-
-    //show addDirector to new movie view
-
-
 
     //edit movie
 
@@ -104,8 +170,6 @@ class MovieController extends Controller
         $request->session()->flash('message',$message);
 
         return view('addDirectorToNewMovie',$vars);
-
-        //return redirect()->route('addDirector',$vars);
 
     }
 

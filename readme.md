@@ -18,17 +18,17 @@ Implementeer minimaal onderstaande functionaliteiten:
 - [x] De mogelijkheid om een acteur toe te verwijderen
 
 			Rating
-- [ ] De mogelijkheid om een rating + review te geven aan een film
+- [x] De mogelijkheid om een rating + review te geven aan een film
 
 Onderstaande zaken dienen aanwezig te zijn:
-- [ ] Correcte routes gekoppeld aan controllers en views
-- [ ] Validatie dmv validationrules
+- [x] Correcte routes gekoppeld aan controllers en views
+- [x] Validatie dmv validationrules
 - [x] Aanpassen van navigatielinks in menu
 
 Extra punten te verdienen met:
 - [ ] Layout
-- [ ] De mogelijkheid om de film info(rating+review) te bekijken
-- [ ] De mogelijkheid om acteurs toe te voegen aan een film
+- [x] De mogelijkheid om de film info(rating+review) te bekijken
+- [x] De mogelijkheid om acteurs toe te voegen aan een film
 
 Small improvements
 - [ ] Melding weergeven wanneer film, regisseur of acteur is verwijderd
