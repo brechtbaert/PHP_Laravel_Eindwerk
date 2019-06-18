@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Gegenereerd op: 16 jun 2019 om 15:07
+-- Gegenereerd op: 18 jun 2019 om 13:51
 -- Serverversie: 5.7.24
 -- PHP-versie: 7.2.14
 
@@ -62,8 +62,7 @@ INSERT INTO `tbl_acteurs` (`acteur_id`, `name`, `fname`) VALUES
 (5, 'Travolta', 'John'),
 (6, 'Jackson', 'Samuel L.'),
 (7, 'Dreyfuss', 'Richard'),
-(8, 'Pitt', 'Brad'),
-(9, 'Norton', 'Edward');
+(8, 'Pitt', 'Brad');
 
 -- --------------------------------------------------------
 
@@ -78,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `tbl_films` (
   `jaar` int(4) NOT NULL,
   PRIMARY KEY (`film_id`),
   UNIQUE KEY `tbl_films_film_id_uindex` (`film_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbl_films`
@@ -109,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `tbl_films_regisseur` (
   PRIMARY KEY (`film_reg_id`),
   KEY `tbl_films_regisseur_tbl_films_film_id_fk` (`film_id`),
   KEY `tbl_films_regisseur_tbl_regisseurs_regisseur_id_fk` (`reg_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbl_films_regisseur`
@@ -124,7 +123,8 @@ INSERT INTO `tbl_films_regisseur` (`film_reg_id`, `film_id`, `reg_id`) VALUES
 (6, 5, 2),
 (7, 6, 7),
 (8, 7, 5),
-(9, 8, 3);
+(9, 8, 3),
+(10, 13, 1);
 
 -- --------------------------------------------------------
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `tbl_regisseurs` (
   `name` varchar(250) DEFAULT NULL,
   `fname` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`regisseur_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `tbl_regisseurs`
