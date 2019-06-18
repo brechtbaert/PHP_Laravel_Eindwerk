@@ -1,3 +1,5 @@
+SQL-file is te vinden in de repo. De database noemt moviereviews.
+
 Implementeer minimaal onderstaande functionaliteiten:
 - [x] Loginsysteem op basis van de Laravel scaffolding tool
 
@@ -30,5 +32,3 @@ Extra punten te verdienen met:
 - [x] De mogelijkheid om de film info(rating+review) te bekijken
 - [x] De mogelijkheid om acteurs toe te voegen aan een film
 
-Small improvements
-- [ ] Melding weergeven wanneer film, regisseur of acteur is verwijderd

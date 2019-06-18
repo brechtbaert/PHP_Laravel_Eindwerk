@@ -257,22 +257,27 @@ class MovieController extends Controller
     }
 
     //delete movie
-    public function deleteMovie($movieId)
+    public function deleteMovie($movieId, Request $request)
     {
         $ar_params = array('film_id'=>$movieId);
         $result=DB::delete('DELETE FROM tbl_films WHERE film_id=:film_id',$ar_params);
 
-        if ($result)
+        try
         {
-            $message = "Film werd verwijderd";
-
+            $result;
         }
-        else
+        catch(QueryException $exception)
         {
             $message = "Er is een fout opgetreden, probeer opnieuw!";
-
+            $request->session()->flash('message',$message);
+            return redirect(route('showMovies'));
         }
+
+
+        $message = "Film werd verwijderd";
+        $request->session()->flash('message',$message);
         return redirect(route('showMovies'));
+
 
     }
 }

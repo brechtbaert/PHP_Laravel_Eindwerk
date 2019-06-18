@@ -76,19 +76,25 @@ class ActorController extends Controller
     }
 
     //delete actor
-    public function deleteActor($actorId)
+    public function deleteActor($actorId, Request $request)
     {
         $ar_params = array('acteur_id'=>$actorId);
         $result=DB::delete('DELETE FROM tbl_acteurs WHERE acteur_id=:acteur_id',$ar_params);
 
-        if ($result)
+        try
         {
-            $message = "Regisseur werd verwijderd";
+            $result;
         }
-        else
+        catch(QueryException $exception)
         {
-            $message = "Er is een fout opgetreden tijdens het verwijderen";
+            $message = "Er is en fout opgetreden tijdens het toevoegen van de acteur";
+            $request->session()->flash('message',$message);
+            return redirect(route('showActors'));
         }
+
+
+        $message = "De acteur werd succesvol toegevoegd";
+        $request->session()->flash('message',$message);
         return redirect(route('showActors'));
     }
 

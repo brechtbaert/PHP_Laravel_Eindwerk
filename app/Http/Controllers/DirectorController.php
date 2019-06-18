@@ -74,20 +74,27 @@ class DirectorController extends Controller
     }
 
     //delete director
-    public function deleteDirector($directorId)
+    public function deleteDirector($directorId, Request $request)
     {
         $ar_params = array('regisseur_id'=>$directorId);
         $result=DB::delete('DELETE FROM tbl_regisseurs WHERE regisseur_id=:regisseur_id',$ar_params);
 
-        if ($result)
+
+        try
         {
-            $message = "Regisseur werd verwijderd";
+            $result;
         }
-        else
+        catch(QueryException $exception)
         {
-            $message = "Er is een fout opgetreden tijdens het verwijderen";
+            $message = "Er is een fout opgetreden, probeer opnieuw!";
+            $request->session()->flash('message',$message);
+            return redirect(route('showDirectors'));
         }
+
+        $message = "Regisseur werd verwijderd";
+        $request->session()->flash('message',$message);
         return redirect(route('showDirectors'));
+
     }
 
     //show newDirector view
